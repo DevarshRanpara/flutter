@@ -261,6 +261,7 @@ class Expansible extends StatefulWidget {
     )
     this.reverseCurve,
     this.maintainState = true,
+    this.lazyLoadChildren = false,
   });
 
   /// Expands and collapses the widget.
@@ -341,6 +342,13 @@ class Expansible extends StatefulWidget {
   /// Defaults to true.
   final bool maintainState;
 
+  /// If [maintainState] is true, whether to delay building the body until the
+  /// widget is expanded for the first time.
+  ///
+  /// Defaults to false, meaning the body is built at the same time as the
+  /// header.
+  final bool lazyLoadChildren;
+
   /// Builds the widget with the results of [headerBuilder] and [bodyBuilder].
   ///
   /// Defaults to placing the header and body in a [Column].
@@ -362,6 +370,7 @@ class Expansible extends StatefulWidget {
 class _ExpansibleState extends State<Expansible> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late CurvedAnimation _heightFactor;
+  bool _hasBeenExpanded = false;
 
   Duration get _duration {
     return widget.animationStyle?.duration ?? widget.duration;
@@ -383,6 +392,7 @@ class _ExpansibleState extends State<Expansible> with SingleTickerProviderStateM
         PageStorage.maybeOf(context)?.readState(context) as bool? ?? widget.controller.isExpanded;
     if (initiallyExpanded) {
       _animationController.value = 1.0;
+      _hasBeenExpanded = true;
       widget.controller.expand();
     } else {
       widget.controller.collapse();
@@ -433,6 +443,7 @@ class _ExpansibleState extends State<Expansible> with SingleTickerProviderStateM
     setState(() {
       // Rebuild with the header and the animating body.
       if (widget.controller.isExpanded) {
+        _hasBeenExpanded = true;
         _animationController.forward();
       } else {
         _animationController.reverse().then<void>((void value) {
@@ -452,7 +463,8 @@ class _ExpansibleState extends State<Expansible> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     assert(!_animationController.isDismissed || !widget.controller.isExpanded);
     final bool closed = !widget.controller.isExpanded && _animationController.isDismissed;
-    final bool shouldRemoveBody = closed && !widget.maintainState;
+    final bool lazilyDeferred = widget.lazyLoadChildren && !_hasBeenExpanded;
+    final bool shouldRemoveBody = (closed && !widget.maintainState) || lazilyDeferred;
 
     final Widget result = Offstage(
       offstage: closed,
