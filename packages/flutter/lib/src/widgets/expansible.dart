@@ -5,6 +5,8 @@
 /// @docImport 'package:flutter/material.dart';
 library;
 
+import 'package:flutter/foundation.dart';
+
 import 'basic.dart';
 import 'framework.dart';
 import 'page_storage.dart';
@@ -365,6 +367,15 @@ class Expansible extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _ExpansibleState();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(FlagProperty('maintainState', value: maintainState, ifFalse: 'maintainState'));
+    properties.add(
+      FlagProperty('lazyLoadBody', value: lazyLoadBody, ifTrue: 'lazyLoadBody'),
+    );
+  }
 }
 
 class _ExpansibleState extends State<Expansible> with SingleTickerProviderStateMixin {

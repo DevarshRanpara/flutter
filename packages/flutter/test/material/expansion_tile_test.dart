@@ -279,7 +279,7 @@ void main() {
     expect(find.text('Discarding State'), findsNothing);
   });
 
-  testWidgets('ExpansionTile lazyLoadChildren defers child build until first expansion', (
+  testWidgets('ExpansionTile lazyLoadBody defers child build until first expansion', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(
@@ -313,7 +313,7 @@ void main() {
     expect(find.text('Lazy Child', skipOffstage: false), findsOneWidget);
   });
 
-  testWidgets('ExpansionTile lazyLoadChildren builds children when initiallyExpanded is true', (
+  testWidgets('ExpansionTile lazyLoadBody builds children when initiallyExpanded is true', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(
@@ -336,7 +336,7 @@ void main() {
   });
 
   testWidgets(
-    'ExpansionTile lazyLoadChildren with maintainState false still removes children when collapsed',
+    'ExpansionTile lazyLoadBody with maintainState false still removes children when collapsed',
     (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(

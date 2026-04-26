@@ -505,6 +505,15 @@ class ExpansionTile extends StatefulWidget {
 
   @override
   State<ExpansionTile> createState() => _ExpansionTileState();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(FlagProperty('maintainState', value: maintainState, ifTrue: 'maintainState'));
+    properties.add(
+      FlagProperty('lazyLoadBody', value: lazyLoadBody, ifTrue: 'lazyLoadBody'),
+    );
+  }
 }
 
 class _ExpansionTileState extends State<ExpansionTile> {

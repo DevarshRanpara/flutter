@@ -199,7 +199,7 @@ void main() {
   });
 
   testWidgets(
-    'Respects lazyLoadChildren when not initially expanded',
+    'Respects lazyLoadBody when not initially expanded',
     (WidgetTester tester) async {
       final controller = ExpansibleController();
       addTearDown(controller.dispose);
@@ -237,7 +237,7 @@ void main() {
   );
 
   testWidgets(
-    'lazyLoadChildren builds body immediately when initially expanded',
+    'lazyLoadBody builds body immediately when initially expanded',
     (WidgetTester tester) async {
       final controller = ExpansibleController();
       controller.expand();
@@ -269,7 +269,7 @@ void main() {
   );
 
   testWidgets(
-    'lazyLoadChildren with maintainState false still removes body when collapsed',
+    'lazyLoadBody with maintainState false still removes body when collapsed',
     (WidgetTester tester) async {
       final controller = ExpansibleController();
       addTearDown(controller.dispose);
