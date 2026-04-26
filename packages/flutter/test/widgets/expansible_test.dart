@@ -208,7 +208,7 @@ void main() {
         TestWidgetsApp(
           home: Expansible(
             controller: controller,
-            lazyLoadChildren: true,
+            lazyLoadBody: true,
             bodyBuilder: (BuildContext context, Animation<double> animation) => const Text('Body'),
             headerBuilder: (BuildContext context, Animation<double> animation) => GestureDetector(
               onTap: controller.isExpanded ? controller.collapse : controller.expand,
@@ -247,7 +247,7 @@ void main() {
         TestWidgetsApp(
           home: Expansible(
             controller: controller,
-            lazyLoadChildren: true,
+            lazyLoadBody: true,
             bodyBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text('Body'),
             headerBuilder: (BuildContext context, Animation<double> animation) => GestureDetector(
@@ -278,7 +278,7 @@ void main() {
         TestWidgetsApp(
           home: Expansible(
             controller: controller,
-            lazyLoadChildren: true,
+            lazyLoadBody: true,
             maintainState: false,
             bodyBuilder: (BuildContext context, Animation<double> animation) =>
                 const Text('Body'),

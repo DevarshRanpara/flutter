@@ -153,7 +153,7 @@ class ExpansionTile extends StatefulWidget {
     this.expansionAnimationStyle,
     this.internalAddSemanticForOnTap = false,
     this.statesController,
-    this.lazyLoadChildren = false,
+    this.lazyLoadBody = false,
   }) : assert(
          expandedCrossAxisAlignment != CrossAxisAlignment.baseline,
          'CrossAxisAlignment.baseline is not supported since the expanded children '
@@ -244,7 +244,7 @@ class ExpansionTile extends StatefulWidget {
   ///
   /// Defaults to false, meaning the body is built at the same time as the
   /// header.
-  final bool lazyLoadChildren;
+  final bool lazyLoadBody;
 
   /// Specifies padding for the [ListTile].
   ///
@@ -877,7 +877,7 @@ class _ExpansionTileState extends State<ExpansionTile> {
       duration: _duration,
       reverseCurve: _reverseCurve,
       maintainState: widget.maintainState,
-      lazyLoadChildren: widget.lazyLoadChildren,
+      lazyLoadBody: widget.lazyLoadBody,
       headerBuilder: _buildHeader,
       bodyBuilder: _buildBody,
       expansibleBuilder: _buildExpansible,

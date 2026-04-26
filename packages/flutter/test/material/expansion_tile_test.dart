@@ -288,7 +288,7 @@ void main() {
           child: SingleChildScrollView(
             child: ExpansionTile(
               title: Text('Title'),
-              lazyLoadChildren: true,
+              lazyLoadBody: true,
               maintainState: true,
               children: <Widget>[Text('Lazy Child')],
             ),
@@ -322,7 +322,7 @@ void main() {
           child: SingleChildScrollView(
             child: ExpansionTile(
               title: Text('Title'),
-              lazyLoadChildren: true,
+              lazyLoadBody: true,
               initiallyExpanded: true,
               children: <Widget>[Text('Lazy Child')],
             ),
@@ -344,7 +344,7 @@ void main() {
             child: SingleChildScrollView(
               child: ExpansionTile(
                 title: Text('Title'),
-                lazyLoadChildren: true,
+                lazyLoadBody: true,
                 maintainState: false,
                 children: <Widget>[Text('Lazy Child')],
               ),

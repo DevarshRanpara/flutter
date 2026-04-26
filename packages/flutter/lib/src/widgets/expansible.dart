@@ -261,7 +261,7 @@ class Expansible extends StatefulWidget {
     )
     this.reverseCurve,
     this.maintainState = true,
-    this.lazyLoadChildren = false,
+    this.lazyLoadBody = false,
   });
 
   /// Expands and collapses the widget.
@@ -347,7 +347,7 @@ class Expansible extends StatefulWidget {
   ///
   /// Defaults to false, meaning the body is built at the same time as the
   /// header.
-  final bool lazyLoadChildren;
+  final bool lazyLoadBody;
 
   /// Builds the widget with the results of [headerBuilder] and [bodyBuilder].
   ///
@@ -463,7 +463,7 @@ class _ExpansibleState extends State<Expansible> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     assert(!_animationController.isDismissed || !widget.controller.isExpanded);
     final bool closed = !widget.controller.isExpanded && _animationController.isDismissed;
-    final bool lazilyDeferred = widget.lazyLoadChildren && !_hasBeenExpanded;
+    final bool lazilyDeferred = widget.lazyLoadBody && !_hasBeenExpanded;
     final bool shouldRemoveBody = (closed && !widget.maintainState) || lazilyDeferred;
 
     final Widget result = Offstage(
